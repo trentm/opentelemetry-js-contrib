@@ -35,18 +35,18 @@ function getAllWorkspaceDirs() {
 getAllWorkspaceDirs().forEach((appRoot) => {
   const packageJsonUrl = path.resolve(`${appRoot}/package.json`);
   const pjson = require(packageJsonUrl);
-  const semver = require("semver");
-  
+  const semver = require('semver');
+
   const isExample = pjson.private && /-example$/.test(pjson.name);
-  
+
   if (isExample) {
     return console.log(`Skipping checking ${pjson.name} because it's an example`);
   }
-  
+
   if (pjson.dependencies && pjson.dependencies['@opentelemetry/api']) {
     throw new Error(`Package ${pjson.name} depends on API but it should be a peer dependency`);
   }
-  
+
   const peerVersion = pjson.peerDependencies && pjson.peerDependencies['@opentelemetry/api'];
   const devVersion = pjson.devDependencies && pjson.devDependencies['@opentelemetry/api'];
   if (peerVersion) {
@@ -57,5 +57,5 @@ getAllWorkspaceDirs().forEach((appRoot) => {
       );
     }
     console.log(`${pjson.name} OK`);
-  }  
+  }
 });

@@ -63,15 +63,15 @@ if (!url) {
 
 const execOpts = {encoding: 'utf-8', stdio: 'inherit'};
 if (existsSync(codecovPath)) {
-  console.log(`Codecov binary found.`);
+  console.log('Codecov binary found.');
 } else {
   console.log(`Codecov binary missing. Downloading from ${url}`);
   execSync(`curl -O "${url}"`, execOpts);
   console.log(`Verifying codecov binary downloaded to "${codecovPath}"`);
-  execSync(`echo "$(curl -s https://keybase.io/codecovsecurity/pgp_keys.asc)" | gpg --no-default-keyring --import`, execOpts);
+  execSync('echo "$(curl -s https://keybase.io/codecovsecurity/pgp_keys.asc)" | gpg --no-default-keyring --import', execOpts);
   execSync(`curl -O "${url}.SHA256SUM"`, execOpts);
   execSync(`curl -O "${url}.SHA256SUM.sig"`, execOpts);
-  execSync(`gpg --verify "codecov.SHA256SUM.sig" "codecov.SHA256SUM"`, execOpts);
+  execSync('gpg --verify "codecov.SHA256SUM.sig" "codecov.SHA256SUM"', execOpts);
 }
 // make sure we have exec perms
 chmodSync(codecovPath, 0o555);

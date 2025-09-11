@@ -20,7 +20,6 @@ import { WebTracerProvider } from '@opentelemetry/sdk-trace-web';
 import { LongTaskInstrumentation } from '../src';
 import { DummySpanExporter } from './util';
 
-/* eslint-disable node/no-unsupported-features/es-builtins */
 const _globalThis: typeof globalThis =
   typeof globalThis === 'object'
     ? globalThis
@@ -31,7 +30,6 @@ const _globalThis: typeof globalThis =
     : typeof global === 'object'
     ? global
     : ({} as typeof globalThis);
-/* eslint-enable node/no-unsupported-features/es-builtins */
 
 describe("LongTaskInstrumentation doesn't throw in unsupported environments", () => {
   let webTracerProvider: WebTracerProvider;

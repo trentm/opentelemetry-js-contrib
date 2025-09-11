@@ -201,8 +201,8 @@ ${chunks.join('\n\n')}
   );
   console.log(`Generated "${semconvTsPath}".`);
 
-  console.log(`Running 'npx eslint --fix src/semconv.ts' to fix formatting.`);
-  execSync(`npx eslint --fix src/semconv.ts`, { cwd: wsDir });
+  console.log('Running "npx eslint --fix src/semconv.ts" to fix formatting.');
+  execSync('npx eslint --fix src/semconv.ts', { cwd: wsDir });
 }
 
 // mainline
