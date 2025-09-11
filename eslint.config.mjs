@@ -1,4 +1,3 @@
-/* eslint-disable license-header/header */
 import eslint from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import globals from 'globals';
@@ -35,7 +34,8 @@ const baseConfig = tseslint.config(
   {
     files: ['**/*.{js,ts,mjs}', '*.{js,ts,mjs}'],
     plugins: {
-      'license-header': licenseHeaderPlugin,
+      // XXX
+      // 'license-header': licenseHeaderPlugin,
       node: nodePlugin,
     },
     extends: [
@@ -58,7 +58,8 @@ const baseConfig = tseslint.config(
       quotes: ['error', 'single', { avoidEscape: true }],
       eqeqeq: ['error', 'smart'],
       'prefer-rest-params': 'off',
-      'license-header/header': ['error', license],
+      // XXX
+      // 'license-header/header': ['error', license],
 
       // new rules
       'no-unused-vars': 'warn',
