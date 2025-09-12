@@ -114,7 +114,9 @@ function genSemconvTs(wsDir) {
     if (gitRemoteUrl.endsWith('/opentelemetry-js.git')) {
       srcIsLocal = true;
     }
-  } catch {}
+  } catch {
+    // pass
+  }
 
   // Find or get semconv sources from a opentelemetry-js.git clone.
   let semconvSrcDir;
