@@ -32,7 +32,11 @@ let sdk: any;
 
 try {
   if (process.env.OTEL_EXPERIMENTAL_CONFIG_FILE) {
-    sdk = startNodeSDKWithConfig({file: process.env.OTEL_EXPERIMENTAL_CONFIG_FILE});
+    sdk = startNodeSDKWithConfig({
+      file: process.env.OTEL_EXPERIMENTAL_CONFIG_FILE,
+      instrumentations: getNodeAutoInstrumentations(),
+      // TODO: not sure about resource detectors added by auto-instrumentations-node
+    });
   } else {
     sdk = new opentelemetry.NodeSDK({
       instrumentations: getNodeAutoInstrumentations(),
