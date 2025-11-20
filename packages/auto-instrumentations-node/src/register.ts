@@ -28,13 +28,18 @@ if (logLevel != null) {
   });
 }
 
-const sdk = new opentelemetry.NodeSDK({
-  instrumentations: getNodeAutoInstrumentations(),
-  resourceDetectors: getResourceDetectorsFromEnv(),
-});
+let sdk: any;
 
 try {
-  sdk.start();
+  if (process.env.OTEL_EXPERIMENTAL_CONFIG_FILE) {
+    sdk = startNodeSDKWithConfig({file: process.env.OTEL_EXPERIMENTAL_CONFIG_FILE});
+  } else {
+    sdk = new opentelemetry.NodeSDK({
+      instrumentations: getNodeAutoInstrumentations(),
+      resourceDetectors: getResourceDetectorsFromEnv(),
+    });
+    sdk.start();
+  }
   diag.info('OpenTelemetry automatic instrumentation started successfully');
 } catch (error) {
   diag.error(
